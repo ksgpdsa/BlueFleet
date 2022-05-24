@@ -1,7 +1,22 @@
+using NToastNotify;
+using Application.Interfaces;
+using Application.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+//builder.Services.AddRazorPages();
+builder.Services.AddMvc().AddNToastNotifyToastr(new NToastNotify.ToastrOptions
+{
+    ProgressBar = true,
+    PositionClass = ToastPositions.BottomRight,
+    PreventDuplicates = true,
+    CloseButton = true,
+});
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IVeiculoService, VeiculoService>();
+builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
 
 var app = builder.Build();
 
@@ -20,6 +35,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+//app.MapRazorPages();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Veiculos}/{action=Index}/{id?}"
+);
 
 app.Run();

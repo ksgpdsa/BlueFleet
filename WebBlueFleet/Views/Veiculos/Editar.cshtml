@@ -1,0 +1,47 @@
+﻿@model Application.Dto.VeiculosDto
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar</h1>
+
+<h4>Veículo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="Id" class="control-label">@Html.DisplayNameFor(model => model.Id)</label>
+                <input type="hidden" asp-for="Id" value="@Model.Id" name="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label">@Html.DisplayNameFor(model => model.Placa)</label>
+                <input asp-for="Placa" value="@Model.Placa" name="Placa" class="form-control" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Montadora" class="control-label">@Html.DisplayNameFor(model => model.Montadora)</label>
+                <input asp-for="Montadora" value="@Model.Montadora" name="Montadora" class="form-control" />
+                <span asp-validation-for="Montadora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label">@Html.DisplayNameFor(model => model.Modelo)</label>
+                <input asp-for="Modelo" value="@Model.Modelo" name="Modelo" class="form-control" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.ActionLink("Voltar", "Index", null, null, new { @class = "btn btn-primary btn-right" })
+                <input type="submit" value="Editar" class="btn btn-primary btn-right" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

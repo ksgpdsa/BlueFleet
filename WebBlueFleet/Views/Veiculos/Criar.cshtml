@@ -1,0 +1,42 @@
+﻿@model Application.Dto.VeiculosDto
+
+@{
+    ViewData["Title"] = "Criar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Criar</h1>
+
+<h4>Veículo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label">@Html.DisplayNameFor(model => model.Placa)</label>
+                <input asp-for="Placa" name="Placa" value="@if(Model != null){ @Model.Placa }" class="form-control" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Montadora" class="control-label">@Html.DisplayNameFor(model => model.Montadora)</label>
+                <input asp-for="Montadora" name="Montadora" value="@if(Model != null){ @Model.Montadora }" class="form-control" />
+                <span asp-validation-for="Montadora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label">@Html.DisplayNameFor(model => model.Modelo)</label>
+                <input asp-for="Modelo" name="Modelo" value="@if(Model != null){ @Model.Modelo }" class="form-control" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.ActionLink("Voltar", "Index", null, null, new { @class = "btn btn-primary btn-right" })
+                <input type="submit" value="Salvar" class="btn btn-primary btn-right" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

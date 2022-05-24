@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.btn-right {
+    float: right;
+}

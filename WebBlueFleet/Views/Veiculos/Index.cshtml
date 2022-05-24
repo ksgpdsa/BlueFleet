@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Application.Dto.VeiculosDto>
+
+@{
+    Layout = "_Layout";
+}
+
+<p>
+    @Html.ActionLink("Novo", "Create", null, null, new { @class = "btn btn-primary btn-right" })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Montadora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Placa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Montadora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", null, new { id = item.Id })"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="@Url.Action("Visualizar", null, new { id = item.Id })"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="@Url.Action("Delete", null, new { id = item.Id })"><i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
